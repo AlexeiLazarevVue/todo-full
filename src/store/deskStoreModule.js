@@ -46,18 +46,24 @@ export const deskStoreModule = {
   },
   mutations: {
     addToDoItem: (state, newItemInfo) => {
-      state.desks
-        .find((desk) => desk.id === +newItemInfo.deskId)
-        ?.todos.find((todo) => todo.id === +newItemInfo.todoId)
-        ?.items.push(newItemInfo.item);
+      if (newItemInfo.item.body.trim() != "") {
+        state.desks
+          .find((desk) => desk.id === +newItemInfo.deskId)
+          ?.todos.find((todo) => todo.id === +newItemInfo.todoId)
+          ?.items.push(newItemInfo.item);
+      }
     },
     addToDo: (state, newToDoInfo) => {
-      state.desks
-        .find((desk) => desk.id === +newToDoInfo.deskId)
-        ?.todos.push(newToDoInfo.toDo);
+      if (newToDoInfo.toDo.name.trim() != "") {
+        state.desks
+          .find((desk) => desk.id === +newToDoInfo.deskId)
+          ?.todos.push(newToDoInfo.toDo);
+      }
     },
     addDesk: (state, newDeskInfo) => {
-      state.desks.push(newDeskInfo);
+      if (newDeskInfo.name.trim() != "") {
+        state.desks.push(newDeskInfo);
+      }
     },
   },
   namespaced: true,
