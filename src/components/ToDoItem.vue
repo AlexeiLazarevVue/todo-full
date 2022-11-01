@@ -1,5 +1,5 @@
 <template>
-  <div class="item-wrapper">
+  <div @contextmenu="showContext" ref="itemWrapper" class="item-wrapper">
     <p>{{ item.body }}</p>
   </div>
 </template>
@@ -12,15 +12,22 @@ export default {
       required: true,
     },
   },
+  methods: {
+    showContext(event) {
+      
+    }
+  }
 };
 </script>
 
 <style scoped>
 .item-wrapper {
-  background: #272727;
+  background: linear-gradient(135deg, #007c62, #1ea869);
   word-break: break-word;
   max-height: 100%;
+  max-width: 200px;
   padding: 10px;
+  -webkit-box-shadow: 5px 5px 5px 5px rgba(34, 60, 80, 0.2);
   border-radius: 10px;
 }
 </style>

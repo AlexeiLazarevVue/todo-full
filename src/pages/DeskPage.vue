@@ -19,7 +19,7 @@ export default {
     ...mapGetters({ getDeskById: "deskStoreModule/getDeskById" }),
 
     createToDo(newToDo) {
-      this.$store.commit("deskStoreModule/addToDo", {
+      this.addToDo({
         toDo: { id: newToDo.id, name: newToDo.body, items: [] },
         deskId: this.$route.params.id,
       });
@@ -41,6 +41,7 @@ export default {
   padding: 20px;
   .to-do-form {
     height: 50px;
+    min-width: 200px;
   }
 }
 </style>

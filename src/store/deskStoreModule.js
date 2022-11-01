@@ -65,6 +65,7 @@ export const deskStoreModule = {
         state.desks.push(newDeskInfo);
       }
     },
+    removeToDoItem: () => {}
   },
   namespaced: true,
 };

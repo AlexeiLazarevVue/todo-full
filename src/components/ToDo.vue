@@ -21,7 +21,7 @@ export default {
   props: {
     toDo: {
       type: Object,
-      // isRequired: true
+      required: true
     },
   },
   data() {
@@ -42,7 +42,7 @@ export default {
 
 <style lang="less" scoped>
 .wrapper {
-  background: #303030;
+  background: linear-gradient(135deg, #007c62, #1ea869, #009258, #47ac76);
   width: 200px;
   min-height: 300px;
   max-height: calc(100% - 40px);
@@ -50,10 +50,12 @@ export default {
   padding: 20px;
   overflow-y: auto;
   scroll-behavior: smooth;
+  -webkit-box-shadow: 5px 5px 5px 5px rgba(34, 60, 80, 0.3);
   border-radius: 10px;
 
   p {
     margin-bottom: 20px;
+    word-break: break-word;
   }
   div {
     margin-bottom: 5px;

@@ -10,9 +10,9 @@ export default {
 
 <style scoped>
 button {
-  background: #303030;
+  background: #e6788b;
   color: rgb(243, 243, 243);
   padding: 10px;
-  border: 2px solid #272727;
+  border: 0;
 }
 </style>
