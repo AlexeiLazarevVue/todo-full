@@ -8,11 +8,15 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 button {
-  background: #e6788b;
-  color: rgb(243, 243, 243);
+  background: #F2F2F8;
+  color: #343756;
   padding: 10px;
   border: 0;
+  transition: 0.7s;
+  &:hover {
+    cursor: pointer;
+  }
 }
 </style>
