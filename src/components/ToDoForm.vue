@@ -36,6 +36,8 @@ form {
   display: flex;
   flex-direction: row;
   border-radius: 10px;
+  margin-bottom: 15px;
+  -webkit-box-shadow: 5px 5px 5px 5px rgba(34, 60, 80, 0.2);
   input {
     width: 100%;
     border-radius: 10px 0 0 10px;

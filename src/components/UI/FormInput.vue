@@ -10,9 +10,9 @@ export default {
 
 <style scoped>
 input {
-  background: #303030;
-  color: rgb(243, 243, 243);
+  background: #F2F2F8;
+  color: #343756;
   padding: 10px;
-  border: 2px solid #272727;
+  border: 0;
 }
 </style>

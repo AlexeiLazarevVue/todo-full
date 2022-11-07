@@ -1,40 +1,6 @@
 export const deskStoreModule = {
   state: {
-    desks: [
-      {
-        id: 1,
-        name: "Name",
-        todos: [
-          {
-            id: 1,
-            name: "First",
-            items: [{ id: 1, body: "dsdsdsds" }],
-          },
-          {
-            id: 2,
-            name: "Second",
-            items: [
-              {
-                id: 1,
-                body: "ffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeffrefwetwertrewgwergewrgwergewgewgwegrwegrwergwerewwwwwweeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-              },
-              { id: 2, body: "dsdsds" },
-            ],
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: "Name 2",
-        todos: [
-          {
-            id: 1,
-            name: "First",
-            items: [{ id: 1, body: "dsdsdsds" }],
-          },
-        ],
-      },
-    ],
+    desks: [],
   },
   getters: {
     getDeskById: (state) => (id) => {
@@ -64,6 +30,10 @@ export const deskStoreModule = {
       if (newDeskInfo.name.trim() != "") {
         state.desks.push(newDeskInfo);
       }
+    },
+    removeItem: (state, targetItemInfo) => {
+      state.desks
+        .find((desk) => desk.id === +targetItemInfo.deskId).todos.forEach((todo) => todo.items = todo.items.filter((item) => +item.id != +targetItemInfo.id) );
     },
   },
   namespaced: true,

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-wrapper">
+  <div class="main-wrapper" @click="setToDoAdding(false)">
     <div class="menu">
       <div class="menu__user">
         <img class="menu__user_logo" src="@/images/CatXD.png" />
@@ -11,9 +11,8 @@
           v-for="desk in getDesks()"
           :key="desk.id"
           v-bind:to="`/${desk.id}`"
-          class="menu__content_link"
-          >{{ desk.name }}</router-link
-        >
+          class="menu__content_link">
+          {{ desk.name }}</router-link>
       </div>
 
       <to-do-form @create="createDesk"></to-do-form>
@@ -29,9 +28,12 @@ export default {
   components: { ToDoForm },
   methods: {
     ...mapGetters({ getDesks: "deskStoreModule/getDesks" }),
-    ...mapMutations({ addToDo: "deskStoreModule/addToDo" }),
+    ...mapMutations({
+      addDesk: "deskStoreModule/addDesk",
+      setToDoAdding: "inputsController/setToDoAdding",
+    }),
     createDesk(newDesk) {
-      this.$store.commit("deskStoreModule/addDesk", {
+      this.addDesk({
         id: newDesk.id,
         name: newDesk.body,
         todos: [],
@@ -42,6 +44,7 @@ export default {
 </script>
 
 <style lang="less">
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -52,12 +55,12 @@ export default {
 
   &::-webkit-scrollbar-track {
     -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
-    background-color: #303030;
+    background-color: linear-gradient(135deg, #0065ef, #006ca6);
     border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: #272727;
+    background-color: #f2f2f8;
     border-radius: 20px;
   }
 }
@@ -67,9 +70,14 @@ export default {
   height: 100vh;
 }
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #3d3d3d;
-  color: rgb(243, 243, 243);
+  background: #ebebf4;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  color: #343756;
 }
 
 .menu {
@@ -77,8 +85,9 @@ body {
   left: 0;
   min-height: 100%;
   min-width: 300px;
-  background: rgb(54, 54, 54);
+  background: #cfdddb;
   overflow: auto;
+  -webkit-box-shadow: 5px 5px 5px 5px rgba(34, 60, 80, 0.2);
   form {
     input {
       padding: 20px !important;
@@ -110,14 +119,14 @@ body {
     flex-direction: column;
     text-align: center;
     &_link {
-      color: rgb(243, 243, 243);
+      color: #616969;
       text-decoration: none;
       width: 100%;
-      padding: 20px;
+      padding: 10px;
       transition: 0.1s;
       &:hover {
         cursor: pointer;
-        background: rgb(44, 44, 44);
+        background: rgba(83, 85, 223, 0.85);
       }
     }
   }
