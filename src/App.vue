@@ -12,7 +12,13 @@
           :key="desk.id"
           v-bind:to="`/${desk.id}`"
           class="menu__content_link">
-          {{ desk.name }}</router-link>
+          {{ desk.name }}
+          <router-link v-bind:to="`/`">
+            <form-button class="delete" @click="removeDesk(desk.id)">
+              <font-awesome-icon class="icon" icon="fa-solid fa-trash" />
+            </form-button>
+          </router-link>
+        </router-link>
       </div>
 
       <to-do-form @create="createDesk"></to-do-form>
@@ -30,14 +36,12 @@ export default {
     ...mapGetters({ getDesks: "deskStoreModule/getDesks" }),
     ...mapMutations({
       addDesk: "deskStoreModule/addDesk",
+      removeDesk: "deskStoreModule/removeDesk",
       setToDoAdding: "inputsController/setToDoAdding",
     }),
     createDesk(newDesk) {
-      this.addDesk({
-        id: newDesk.id,
-        name: newDesk.body,
-        todos: [],
-      });
+      newDesk.name = newDesk.value;
+      this.addDesk(newDesk);
     },
   },
 };
@@ -49,6 +53,7 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Montserrat";
   &::-webkit-scrollbar {
     width: 10px;
   }
@@ -71,7 +76,6 @@ export default {
 }
 body {
   background: #ebebf4;
-  font-family: "Montserrat";
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -119,6 +123,7 @@ body {
     flex-direction: column;
     text-align: center;
     &_link {
+      position: relative;
       color: #616969;
       text-decoration: none;
       width: 100%;
@@ -126,7 +131,23 @@ body {
       transition: 0.1s;
       &:hover {
         cursor: pointer;
+        color: #f2f2f8;
         background: rgba(83, 85, 223, 0.85);
+        .delete {
+          opacity: 1;
+        }
+      }
+      .delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        background: none;
+        opacity: 0;
+        transition: 0.3s;
+        &:hover {
+          color: #f2f2f8;
+        }
       }
     }
   }

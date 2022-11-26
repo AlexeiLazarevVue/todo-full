@@ -1,6 +1,6 @@
 <template>
   <div class="todos">
-    <div v-for="todo in getDesk.todos" :key="todo.id">
+    <div v-for="todo in todos.filter((todo) => todo.deskId == $route.params.id)" :key="todo.id">
       <to-do :toDo="todo"></to-do>
     </div>
     <add-button
@@ -33,15 +33,16 @@ export default {
     ...mapGetters({ getDeskById: "deskStoreModule/getDeskById" }),
 
     createToDo(newToDo) {
-      this.addToDo({
-        toDo: { id: newToDo.id, name: newToDo.body, items: [] },
-        deskId: this.$route.params.id,
-      });
+      newToDo.deskId = this.$route.params.id
+      newToDo.name = newToDo.value
+      console.log(newToDo.name, newToDo.value);
+      this.addToDo(newToDo);
     },
   },
   computed: {
     ...mapState({
       isToDoAdding: (state) => state.inputsController.isToDoAdding,
+      todos: (state) => state.deskStoreModule.todos,
     }),
 
     getDesk() {
@@ -58,8 +59,10 @@ export default {
   overflow-x: auto;
   padding: 20px;
   .add-button {
+    color: #9FA5DF;
     height: 300px;
     min-width: 260px;
+    margin-left: 30px;
   }
   .to-do-form {
     height: 50px;
