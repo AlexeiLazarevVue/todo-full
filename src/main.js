@@ -5,6 +5,7 @@ import store from "@/store/index";
 import components from "@/components/UI";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faCircleXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 const app = createApp(App);
@@ -13,7 +14,7 @@ components.forEach((component) => {
   app.component(component.name, component);
 });
 
-library.add(faTrash)
+library.add(faTrash, faCircleXmark)
 
 app.component('font-awesome-icon', FontAwesomeIcon)
 

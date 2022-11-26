@@ -1,9 +1,10 @@
 <template>
   <div class="item-wrapper">
-    <p>{{ item.body }}</p>
+    <p>{{ item.value }}</p>
     <form-button
       class="delete"
-      @click="removeItem({ deskId: $route.params.id, id: item.id })">
+      @click="removeItem(item.id)"
+    >
       <font-awesome-icon class="icon" icon="fa-solid fa-trash" />
     </form-button>
   </div>
@@ -35,16 +36,20 @@ export default {
   word-break: break-word;
   max-height: 100%;
   max-width: 100%;
-  padding: 10px;
+  padding: 10px 0px 10px 10px;
   border-radius: 10px;
+  transition: 0.3s;
+  &:hover {
+    .delete {
+      opacity: 1;
+    }
+  }
   .delete {
     display: flex;
+    opacity: 0;
     align-items: center;
     height: 0;
     transition: 0.3s;
-    &:hover {
-      opacity: 0.7;
-    }
   }
 }
 </style>

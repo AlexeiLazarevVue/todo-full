@@ -1,8 +1,8 @@
 <template>
   <form action="" @submit.prevent>
     <form-input
-      v-bind:value="newItem.body"
-      @input="newItem.body = $event.target.value"
+      v-bind:value="newItem.value"
+      @input="newItem.value = $event.target.value"
     />
     <form-button @click="createItem">Add</form-button>
   </form>
@@ -14,7 +14,7 @@ export default {
     return {
       newItem: {
         id: "",
-        body: "",
+        value: "",
       },
     };
   },
@@ -24,7 +24,7 @@ export default {
       this.$emit("create", this.newItem);
       this.newItem = {
         id: "",
-        body: "",
+        value: "",
       };
     },
   },
